@@ -1,0 +1,16 @@
+//
+// Created by MacBook Pro on 4/15/21.
+//
+
+#ifndef CRYPTOGRAPHYPROJECTS_SUBSTITUTIONCYPHER_H
+#define CRYPTOGRAPHYPROJECTS_SUBSTITUTIONCYPHER_H
+
+
+
+class SubstitutionCypher {
+
+};
+
+
+
+#endif //CRYPTOGRAPHYPROJECTS_SUBSTITUTIONCYPHER_H
