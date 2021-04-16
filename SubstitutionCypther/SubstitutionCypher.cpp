@@ -1,44 +1,61 @@
-
-
-//#include "SubstitutionCypher.h"
-
-#include <iostream>
+#include "SubstitutionCypher.h"
 
 using namespace std;
 
-class SubstitutionCypher {
-    const string alpha = "abcdefghijklmnopqrstuvwxyz";
+    /* Old implementation that uses strings replacement
+bool replace(string& str, const string& from, const string& to) 
+{
 
-    public:
+    size_t start_pos = str.find(from);
+    if(start_pos == string::npos)
+        return false;
+    str.replace(start_pos, from.length(), to);
+    return true;
+    
+}
+*/
 
-    bool replace(string& str, const string& from, const std::string& to) {
-        size_t start_pos = str.find(from);
-        if(start_pos == string::npos)
-            return false;
-        str.replace(start_pos, from.length(), to);
-        return true;
+/***
+ * Returns the most repeated string of the specified length in the input string.
+ * length: The length of the string.
+ * s: The input string.
+ * */
+string SubstitutionCypher::mostFrequent(string s, int length)
+{
+    
+}
+
+string SubstitutionCypher::encrypt(string plain, string key)
+{
+    if(key.length() < 26) return "Encryption ERROR: small key length";
+    for(int i = 0; i < plain.length(); i++)
+    {
+        int charIndex = tolower(plain[i]) - 'a';
+        plain[i] = toupper(key[charIndex]);
+    }
+    return plain;
+}
+
+string SubstitutionCypher::decrypt(string crypto, string key)
+{
+    if (key.length() < 26)
+        return "Decryption ERROR: small key length";
+    
+    /*** Create an inverse key where each letter is replaced by an alphabetical letter depending on its position in the key
+     * */
+    string inverseKey = "abcdefghijklmnopqrstuvwxyz";
+    for(int i = 0; i < 26; i++)
+    {
+        //inverseKey[Key letter alphabetical order] = Letter corresponding to its order in key;
+        inverseKey[tolower(key[i]) - 'a'] = i + 'a';
     }
 
-    string encrypt(string plain, string key) {
-
-    string crypto = "";
-    crypto = plain;
-    for (int i = 0; i <26; i++){
-    bool x = replace(crypto, alpha[i], key[i]);
-    if (!x) {crypto = "error parsing"; break;}
+    /*** Ecnrypt the message using the inverse key, resulting in its decryption.
+     * */
+    for(int i = 0; i < crypto.length(); i++)
+    {
+        int charIndex = tolower(crypto[i]) - 'a';
+        crypto[i] = tolower(inverseKey[charIndex]);
     }
-
     return crypto;
-
-    }
-
-    string decrypt(string crypto, string key) {
-
-     string plain = "";
-
-
-
-     return plain;
-    }
-
-};
+}
