@@ -1,30 +1,5 @@
 #include "SubstitutionCypher.h"
 
-using namespace std;
-
-    /* Old implementation that uses strings replacement
-bool replace(string& str, const string& from, const string& to) 
-{
-
-    size_t start_pos = str.find(from);
-    if(start_pos == string::npos)
-        return false;
-    str.replace(start_pos, from.length(), to);
-    return true;
-    
-}
-*/
-
-/***
- * Returns the most repeated string of the specified length in the input string.
- * length: The length of the string.
- * s: The input string.
- * */
-string SubstitutionCypher::mostFrequent(string s, int length)
-{
-    
-}
-
 string SubstitutionCypher::encrypt(string plain, string key)
 {
     if(key.length() < 26) return "Encryption ERROR: small key length";
@@ -44,11 +19,12 @@ string SubstitutionCypher::decrypt(string crypto, string key)
     /*** Create an inverse key where each letter is replaced by an alphabetical letter depending on its position in the key
      * */
     string inverseKey = "abcdefghijklmnopqrstuvwxyz";
-    for(int i = 0; i < 26; i++)
-    {
-        //inverseKey[Key letter alphabetical order] = Letter corresponding to its order in key;
-        inverseKey[tolower(key[i]) - 'a'] = i + 'a';
-    }
+    for (int i = 0; i<26; i++){
+            //inverseKey[Key letter alphabetical order] = Letter corresponding to its order in key;
+            char currentLetter = i + 'a';
+            char currentKeyLetter = tolower(key[i]) - 'a';
+            inverseKey[currentKeyLetter] = currentLetter;
+        }
 
     /*** Ecnrypt the message using the inverse key, resulting in its decryption.
      * */
