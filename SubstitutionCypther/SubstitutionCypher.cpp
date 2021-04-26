@@ -35,3 +35,63 @@ string SubstitutionCypher::decrypt(string crypto, string key)
     }
     return crypto;
 }
+
+string SubstitutionCypher::hack(string crypto) {
+    string sFrequencyTable = "etaiosnrhdlucmfywgpbvkxqjz";
+    string alphabit = "abcdefghijklmnopqrstuvwxyz";
+
+
+    /////////bigrams
+    int** doubleFreq = new int* [26];
+    for (int i = 0; i<26; i++)
+        doubleFreq[i] = new int[26];
+
+    for (int i = 0; i<26; i++)
+        for (int j = 0; i<26; i++)
+            doubleFreq[i][j]  = 0;
+
+    for (int i = 0; i<crypto.length()-1; i++) {
+        int a = tolower(crypto[i]);
+        int b = tolower(crypto[i+1]);
+        int firstCharIndex = a - 'a';
+        int secondCharIndex = b - 'a';
+        doubleFreq[firstCharIndex][secondCharIndex]++;
+    }
+
+
+    int singleFreq[26] = {0};
+
+    for (int i = 0; i<crypto.length(); i++) {
+        crypto[i] = tolower(crypto[i]);
+        int charIndex = crypto[i] - 'a';
+        singleFreq[charIndex]++;
+    }
+
+
+    string invkey = "00000000000000000000000000";
+
+    for (int i = 0; i<26; i++){
+        int maxInd = 0;
+        for (int j = 0; j<26; j++){ // find max
+            if (singleFreq[maxInd]<singleFreq[j]) maxInd = j;
+        }
+        invkey[maxInd] = sFrequencyTable[i];
+        singleFreq[maxInd] = -1;
+    }
+
+
+    for (int i = 0; i<crypto.length(); i++)
+        crypto[i] = tolower(invkey[tolower(crypto[i]) - 'a']);
+    return crypto;
+
+}
+
+float SubstitutionCypher::getHitRatio (string plain, string encrypted) {
+    float hits = 0;
+    for (int i = 0; i<encrypted.length(); i++){
+        if (tolower(plain[i]) == encrypted[i]) hits++;
+    }
+    cout << "Hit ratio: " << hits * 100 / encrypted.length() << "%";
+    return hits;
+}
+
