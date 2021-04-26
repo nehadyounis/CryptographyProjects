@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1619439352 source:c:\users\mohamed atef\documents\ee school\security algorithms\projects\repo\project_1\substitutioncipher.cpp
+	"SubstitutionCipher.h"
+
+1619439417 c:\users\mohamed atef\documents\ee school\security algorithms\projects\repo\project_1\substitutioncipher.h
+	<iostream>
+	<string>
+	<ctype.h>
+
+1619443064 source:c:\users\mohamed atef\documents\ee school\security algorithms\projects\repo\project_1\main.cpp
+	<iostream>
+	<string>
+	"SubstitutionCipher.h"
+	<conio.h>
+	<fstream>
+	<sstream>
+
