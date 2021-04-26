@@ -11,6 +11,7 @@ int main()
 {
     ifstream plainFile("plain text.txt");
     ofstream cryptFile("encrypt.txt");
+    ofstream decryptFile("decrypt.txt");
 
     string text;
     string key = "qwertyuiopasdfghjklzxcvbnm";
@@ -31,12 +32,42 @@ int main()
             text += c;
     }
 
-    //Prompt the user for the key
+    char choice;
     cout << "Welcome to the encryption software..." << endl << endl;
-    cout << "Please enter the key consisting of a combination of the 26 alphabetical letters: ";
-    cin >> key;
+    cout << "Do you want to (e)ncrypt, (d)ecrypt, (h)ack, or (c)heck hit ratio: ";
+    cin >> choice;
 
-    encrypt = encrypter.encrypt(text, key);
-    cryptFile << encrypt;
-    cout << "The encrypted text is saved to encrypt.txt file." << endl;
+    if(choice == 'e')
+    {
+        //Prompt the user for the key
+        cout << "Please enter the key consisting of a combination of the 26 alphabetical letters: ";
+        cin >> key;
+
+        //Encrypt and place the result in the encrypt.txt file.
+        encrypt = encrypter.encrypt(text, key);
+        cryptFile << encrypt;
+        cout << "The encrypted text is saved to encrypt.txt file." << endl;
+    }
+    else if (choice == 'd')
+    {
+        //Prompt the user for the key
+        cout << "Please enter the key consisting of a combination of the 26 alphabetical letters: ";
+        cin >> key;
+
+        //Decrypt and place the result in the decrypt.txt file.
+        decryptFile << encrypter.decrypt(text, key);
+        cout << "The decrypted text is saved to decrypt.txt file." << endl;
+    }
+    else if (choice == 'h')
+    {
+        //To Do
+    }
+    else if (choice == 'c')
+    {
+        //To Do
+    }
+    else
+    {
+        cout << "Wrong user input. Restart the program and try again." << endl;
+    }
 }
