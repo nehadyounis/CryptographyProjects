@@ -263,6 +263,7 @@ string SubstitutionCipher::hack(string crypto)
         freq_1[maxInd] = -1;
     }
 
+
     //Update inverse key with the top 5 single frequencies
     for(int i = 0; i < TOP_SIZE; i++)
     {
